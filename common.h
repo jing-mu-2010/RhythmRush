@@ -14,6 +14,7 @@
 #include <time.h>
 #include <windows.h>
 #include <mmsystem.h>
+#include <math.h>
 #pragma comment(lib, "winmm.lib")
 
 // --- 宏定义 ---
@@ -72,3 +73,4 @@ void Audio_Resume(); // 【新增】恢复音乐
 void RunGame(GameConfig* config, int playerType); 
 
 #endif
+
