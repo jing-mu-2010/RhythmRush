@@ -14,7 +14,6 @@
 #include <time.h>
 #include <windows.h>
 #include <mmsystem.h>
-#include <math.h>
 #pragma comment(lib, "winmm.lib")
 
 // --- 宏定义 ---
@@ -53,18 +52,18 @@ typedef struct GameConfig {
 
 // ui_sys.c (UI组)
 void DrawMenu();
-void DrawManager(GameConfig* head);
+void DrawManager(GameConfig* head);//画关卡配置
 void DrawCharSelect(int currentType); // 【新增】画选人界面
 int GetUserSelection(); // 获取菜单选择
 
 // data_manager.c (后台组)
-GameConfig* InitList();
+GameConfig* InitList();//初始化链表
 void AddConfig(GameConfig* head, char* name, int speed, int gravity, int theme); // 参数变多了
 void SaveConfigs(GameConfig* head); // 存档
 void LoadConfigs(GameConfig* head); // 读档
 
 // audio_sys.c (音频组)
-void PlayBGM(char* path);
+void PlayBGM(char* path);//放音乐
 void Audio_Pause();  // 【新增】暂停音乐
 void Audio_Resume(); // 【新增】恢复音乐
 
@@ -73,4 +72,3 @@ void Audio_Resume(); // 【新增】恢复音乐
 void RunGame(GameConfig* config, int playerType); 
 
 #endif
-
