@@ -1,4 +1,4 @@
-/* common.h - 公共头文件 勿动！！！ */
+/* common.h - 公共头文件  */
 #ifndef COMMON_H
 #define COMMON_H
 
@@ -51,5 +51,6 @@ void PlayBGM(char* path);//放音乐
 
 // game_engine.c (游戏组)
 void RunGame(GameConfig* config);//进入游戏逻辑
+
 
 #endif
