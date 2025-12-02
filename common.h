@@ -1,7 +1,7 @@
 /* 
  * 文件名: common.h
- * 描述: 全局定义、结构体与函数声明 (项目的“宪法”)
- * 状态: 最终完整版
+ * 描述: 全局定义、结构体与函数声明
+ * 状态: 最终完整版 (含中文支持与所有扩展功能)
  */
 #ifndef COMMON_H
 #define COMMON_H
@@ -14,7 +14,6 @@
 #include <conio.h>
 #include <time.h>
 #include <windows.h>
-#include <math.h>
 #include <mmsystem.h>
 #pragma comment(lib, "winmm.lib") // 链接音频库
 
@@ -35,13 +34,15 @@ typedef enum {
 
 // --- 数据结构: 关卡配置 (后台组负责) ---
 typedef struct GameConfig {
-    int id;                 // 编号 (1, 2, 3...)
+    int id;                 // 编号
     char name[50];          // 关卡名称 (如 "简单模式")
     
     // 核心参数
     char bgmPath[100];      // 音乐路径
     int speed;              // 游戏速度 (1000为基准)
-    int gravity;            // 重力参数 (1=飘, 5=重)
+    
+    // 物理与视觉扩展
+    int gravity;            // 重力参数 (1=飘, 3=正常, 5=重)
     int themeColor;         // 主题颜色 (0:绿, 1:蓝, 2:红)
     
     int bestScore;          // 历史最高分记录
@@ -59,15 +60,16 @@ void DrawManager(GameConfig* head);        // 画后台表格
 
 // [后台组] data_manager.c
 GameConfig* InitList();                    // 初始化链表
-void AddConfig(GameConfig* head, char* name, int speed, int gravity, int theme); // 增加
-void DeleteConfig(GameConfig* head, int id); // 删除
+// 增加配置 (注意参数变多了)
+void AddConfig(GameConfig* head, char* name, int speed, int gravity, int theme); 
+void DeleteConfig(GameConfig* head, int id); // 删除配置
 void SaveConfigs(GameConfig* head);        // 保存文件
 void LoadConfigs(GameConfig* head);        // 读取文件
 
 // [音频组] audio_sys.c
 void PlayBGM(char* path);                  // 播放音乐
-void Audio_Pause();                        // 暂停
-void Audio_Resume();                       // 恢复
+void Audio_Pause();                        // 暂停音乐
+void Audio_Resume();                       // 恢复音乐
 
 // [游戏组] game_engine.c
 // 参数: config=当前关卡设定, playerType=当前选的角色
